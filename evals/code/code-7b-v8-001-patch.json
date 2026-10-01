@@ -1,0 +1,16 @@
+{
+  "model": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+  "adapter_run": "code-7b-v8-001",
+  "results": [
+    {
+      "id": "python-slugify-whitespace",
+      "passed": false,
+      "output_characters": 92
+    },
+    {
+      "id": "python-discount-boundary",
+      "passed": false,
+      "output_characters": 145
+    }
+  ]
+}

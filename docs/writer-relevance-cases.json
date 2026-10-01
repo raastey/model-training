@@ -1,0 +1,32 @@
+[
+  {
+    "id": "R1",
+    "query": "Explain why evidence matters in public debate.",
+    "expected_document_ids": ["writer-8daff94ce6c96b47"],
+    "label_basis": "Provisional system review: an evidence-led institutional accountability analysis."
+  },
+  {
+    "id": "R2",
+    "query": "Write about the role of accountability in political power.",
+    "expected_document_ids": ["writer-f6e221d88be92388"],
+    "label_basis": "Provisional system review: direct treatment of political power and accountability."
+  },
+  {
+    "id": "R3",
+    "query": "Explain how money influences democratic representation.",
+    "expected_document_ids": ["writer-39de4f66f9296501"],
+    "label_basis": "Provisional system review: direct treatment of money and democratic electoral representation."
+  },
+  {
+    "id": "R4",
+    "query": "Draft a concise argument about narrative and public opinion.",
+    "expected_document_ids": ["writer-9f624db9389405d3"],
+    "label_basis": "Provisional system review: analysis of political narrative and its influence on public action."
+  },
+  {
+    "id": "R5",
+    "query": "Explain the human consequences of policy decisions.",
+    "expected_document_ids": ["writer-447a0cd810415278"],
+    "label_basis": "Provisional system review: connects policy and power structures to human consequences."
+  }
+]

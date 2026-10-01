@@ -1,0 +1,54 @@
+{
+  "candidate": "writer-voice-001",
+  "sources": 5,
+  "context_budget": 3000,
+  "max_tokens": 220,
+  "results": [
+    {
+      "id": "R1",
+      "issue": null,
+      "output_characters": 1237,
+      "retrieved_document_ids": [
+        "writer-31aba1ee21d17dde",
+        "writer-adb589a78a6acf55",
+        "writer-82b86d28eb0ad2b9",
+        "writer-9f624db9389405d3"
+      ]
+    },
+    {
+      "id": "R2",
+      "issue": null,
+      "output_characters": 1263,
+      "retrieved_document_ids": [
+        "writer-a1a160a9538d0618",
+        "writer-44622aac837073d4"
+      ]
+    },
+    {
+      "id": "R3",
+      "issue": null,
+      "output_characters": 911,
+      "retrieved_document_ids": [
+        "writer-39de4f66f9296501"
+      ]
+    },
+    {
+      "id": "R4",
+      "issue": null,
+      "output_characters": 1326,
+      "retrieved_document_ids": [
+        "writer-6a853e01ee7238cd",
+        "writer-83b2d45be6b49239",
+        "writer-9f624db9389405d3"
+      ]
+    },
+    {
+      "id": "R5",
+      "issue": null,
+      "output_characters": 1242,
+      "retrieved_document_ids": [
+        "writer-b6d4c406cde0c64a"
+      ]
+    }
+  ]
+}

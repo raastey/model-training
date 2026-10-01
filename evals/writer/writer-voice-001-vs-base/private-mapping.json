@@ -1,0 +1,14 @@
+{
+  "evidence": {
+    "A": "base",
+    "B": "candidate"
+  },
+  "accountability": {
+    "A": "base",
+    "B": "candidate"
+  },
+  "power": {
+    "A": "candidate",
+    "B": "base"
+  }
+}

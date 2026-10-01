@@ -1,0 +1,55 @@
+{
+  "kind": "self_retrieval_smoke",
+  "results": [
+    {
+      "document_id": "writer-0058b3dafd69cf99",
+      "query": "Find the writing about: The 2026 World Cup Final Was Never Too Big for Politics",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-010dc4a9a309b22d",
+      "query": "Find the writing about: The Combustion Mandate: Washington's War for the World's Energy Supply and Why It May Break Before It Holds",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-013495cd06d00360",
+      "query": "Find the writing about: The Virus Without Name: How Hantavirus Became a System of Inequality",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-014596477b6708f2",
+      "query": "Find the writing about: FIFA Sold Neutrality for Access",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-0157ae02f98db473",
+      "query": "Find the writing about: Israel\u2019s Settler Colony Is Exporting Its Methods",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-01c482a6e53e466b",
+      "query": "Find the writing about: The Locked Sequence: Three Corridors, the Planting Window, and the Famine Architecture Already Complete",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-01e02a868701c7d8",
+      "query": "Find the writing about: The Last Guardrail: Jerome Powell and the Unmaking of the Independent Fed",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-023fc0aca74ff348",
+      "query": "Find the writing about: The Controlled Burn: How India's State Made Manipur Ungovernable, Then Blamed the Fire",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-0862368e7417aded",
+      "query": "Find the writing about: The West Keeps Pressing Russia Because Moscow Still Refuses the Final Break",
+      "passed_at_5": true
+    },
+    {
+      "document_id": "writer-0964c43d9efbec1c",
+      "query": "Find the writing about: How Israel Rewired American Foreign Policy From Truman to Tehran: How a Foreign Government's Lobby Rewired Congress, Buried Its Dead, and Launched America's Wars",
+      "passed_at_5": true
+    }
+  ]
+}

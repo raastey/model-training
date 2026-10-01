@@ -1,0 +1,62 @@
+{
+  "candidate": "writer-chunked-001",
+  "results": [
+    {
+      "id": "R1",
+      "issue": null,
+      "output_characters": 2306,
+      "retrieved_document_ids": [
+        "writer-0b5752e137d6cb5e",
+        "writer-8daff94ce6c96b47",
+        "writer-3adbb2cfc2fb2451",
+        "writer-adb589a78a6acf55"
+      ]
+    },
+    {
+      "id": "R2",
+      "issue": null,
+      "output_characters": 2487,
+      "retrieved_document_ids": [
+        "writer-f6e221d88be92388",
+        "writer-a1a160a9538d0618",
+        "writer-26ad3e8ca6c8ff73",
+        "writer-8daff94ce6c96b47",
+        "writer-382fac5ddcf610a0"
+      ]
+    },
+    {
+      "id": "R3",
+      "issue": "REPETITION",
+      "output_characters": 2332,
+      "retrieved_document_ids": [
+        "writer-39de4f66f9296501",
+        "writer-0b5752e137d6cb5e",
+        "writer-979cb3d1b523de9d",
+        "writer-a52249ce8624c7a4"
+      ]
+    },
+    {
+      "id": "R4",
+      "issue": null,
+      "output_characters": 2309,
+      "retrieved_document_ids": [
+        "writer-6a853e01ee7238cd",
+        "writer-f6e221d88be92388",
+        "writer-9f624db9389405d3",
+        "writer-f1277d4a18f1e353"
+      ]
+    },
+    {
+      "id": "R5",
+      "issue": "REPETITION",
+      "output_characters": 2115,
+      "retrieved_document_ids": [
+        "writer-b6d4c406cde0c64a",
+        "writer-447a0cd810415278",
+        "writer-4a6f2b9b0886cdbc",
+        "writer-c1092fbf3c7aa817",
+        "writer-01c482a6e53e466b"
+      ]
+    }
+  ]
+}

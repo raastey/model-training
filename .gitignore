@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+corpora/
+datasets/
+models/
+adapters/
+reports/
+runs/
+logs/
+.venv.incomplete/
+.DS_Store
+context/

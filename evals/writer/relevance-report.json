@@ -1,0 +1,77 @@
+{
+  "kind": "human_labeled_relevance",
+  "results": [
+    {
+      "id": "R1",
+      "query": "Explain why evidence matters in public debate.",
+      "expected_document_ids": [
+        "writer-8daff94ce6c96b47"
+      ],
+      "retrieved_document_ids": [
+        "writer-0b5752e137d6cb5e",
+        "writer-8daff94ce6c96b47",
+        "writer-3adbb2cfc2fb2451",
+        "writer-adb589a78a6acf55"
+      ],
+      "passed_at_5": true
+    },
+    {
+      "id": "R2",
+      "query": "Write about the role of accountability in political power.",
+      "expected_document_ids": [
+        "writer-f6e221d88be92388"
+      ],
+      "retrieved_document_ids": [
+        "writer-f6e221d88be92388",
+        "writer-a1a160a9538d0618",
+        "writer-26ad3e8ca6c8ff73",
+        "writer-8daff94ce6c96b47",
+        "writer-382fac5ddcf610a0"
+      ],
+      "passed_at_5": true
+    },
+    {
+      "id": "R3",
+      "query": "Explain how money influences democratic representation.",
+      "expected_document_ids": [
+        "writer-39de4f66f9296501"
+      ],
+      "retrieved_document_ids": [
+        "writer-39de4f66f9296501",
+        "writer-0b5752e137d6cb5e",
+        "writer-979cb3d1b523de9d",
+        "writer-a52249ce8624c7a4"
+      ],
+      "passed_at_5": true
+    },
+    {
+      "id": "R4",
+      "query": "Draft a concise argument about narrative and public opinion.",
+      "expected_document_ids": [
+        "writer-9f624db9389405d3"
+      ],
+      "retrieved_document_ids": [
+        "writer-6a853e01ee7238cd",
+        "writer-f6e221d88be92388",
+        "writer-9f624db9389405d3",
+        "writer-f1277d4a18f1e353"
+      ],
+      "passed_at_5": true
+    },
+    {
+      "id": "R5",
+      "query": "Explain the human consequences of policy decisions.",
+      "expected_document_ids": [
+        "writer-447a0cd810415278"
+      ],
+      "retrieved_document_ids": [
+        "writer-b6d4c406cde0c64a",
+        "writer-447a0cd810415278",
+        "writer-4a6f2b9b0886cdbc",
+        "writer-c1092fbf3c7aa817",
+        "writer-01c482a6e53e466b"
+      ],
+      "passed_at_5": true
+    }
+  ]
+}

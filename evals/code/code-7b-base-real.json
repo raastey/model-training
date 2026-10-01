@@ -1,0 +1,21 @@
+{
+  "model": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+  "adapter_run": null,
+  "results": [
+    {
+      "id": "nauticgrid-entry-href-mutation",
+      "passed": true,
+      "output_characters": 468
+    },
+    {
+      "id": "nauticgrid-confidence-stale-mutation",
+      "passed": true,
+      "output_characters": 917
+    },
+    {
+      "id": "nauticgrid-priority-watch-mutation",
+      "passed": true,
+      "output_characters": 2194
+    }
+  ]
+}

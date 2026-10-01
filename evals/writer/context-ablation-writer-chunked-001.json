@@ -1,0 +1,116 @@
+{
+  "candidate": "writer-chunked-001",
+  "variants": [
+    {
+      "context_budget": 3000,
+      "passed": 3,
+      "total": 5,
+      "results": [
+        {
+          "id": "R1",
+          "issue": null,
+          "output_characters": 2030,
+          "retrieved_count": 4
+        },
+        {
+          "id": "R2",
+          "issue": "REPETITION",
+          "output_characters": 2312,
+          "retrieved_count": 2
+        },
+        {
+          "id": "R3",
+          "issue": "REPETITION",
+          "output_characters": 2287,
+          "retrieved_count": 1
+        },
+        {
+          "id": "R4",
+          "issue": null,
+          "output_characters": 2442,
+          "retrieved_count": 3
+        },
+        {
+          "id": "R5",
+          "issue": null,
+          "output_characters": 1962,
+          "retrieved_count": 1
+        }
+      ]
+    },
+    {
+      "context_budget": 6000,
+      "passed": 1,
+      "total": 5,
+      "results": [
+        {
+          "id": "R1",
+          "issue": "REPETITION",
+          "output_characters": 1788,
+          "retrieved_count": 3
+        },
+        {
+          "id": "R2",
+          "issue": "REPETITION",
+          "output_characters": 2181,
+          "retrieved_count": 4
+        },
+        {
+          "id": "R3",
+          "issue": "REPETITION",
+          "output_characters": 2345,
+          "retrieved_count": 4
+        },
+        {
+          "id": "R4",
+          "issue": "REPETITION",
+          "output_characters": 2355,
+          "retrieved_count": 5
+        },
+        {
+          "id": "R5",
+          "issue": null,
+          "output_characters": 2279,
+          "retrieved_count": 5
+        }
+      ]
+    },
+    {
+      "context_budget": 9000,
+      "passed": 1,
+      "total": 5,
+      "results": [
+        {
+          "id": "R1",
+          "issue": "REPETITION",
+          "output_characters": 2180,
+          "retrieved_count": 4
+        },
+        {
+          "id": "R2",
+          "issue": null,
+          "output_characters": 2318,
+          "retrieved_count": 5
+        },
+        {
+          "id": "R3",
+          "issue": "REPETITION",
+          "output_characters": 2253,
+          "retrieved_count": 5
+        },
+        {
+          "id": "R4",
+          "issue": "REPETITION",
+          "output_characters": 2091,
+          "retrieved_count": 4
+        },
+        {
+          "id": "R5",
+          "issue": "REPETITION",
+          "output_characters": 2190,
+          "retrieved_count": 5
+        }
+      ]
+    }
+  ]
+}

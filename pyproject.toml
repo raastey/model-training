@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sixtwelve-local-ai"
+version = "0.1.0"
+description = "Private, local training pipeline for SIXTWELVE personal models"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "pydantic>=2.10,<3",
+  "rich>=13.9,<14",
+  "typer>=0.15,<1",
+]
+
+[project.optional-dependencies]
+training = [
+  "mlx==0.32.0",
+  "mlx-lm==0.31.3",
+]
+retrieval = ["mlx-embeddings==0.1.0"]
+dev = ["pytest>=8.3,<9"]
+
+[project.scripts]
+sixai = "trainer.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["trainer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

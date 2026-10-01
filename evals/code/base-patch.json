@@ -1,0 +1,16 @@
+{
+  "model": "mlx-community/Qwen2.5-Coder-3B-Instruct-4bit",
+  "adapter_run": null,
+  "results": [
+    {
+      "id": "python-slugify-whitespace",
+      "passed": true,
+      "output_characters": 265
+    },
+    {
+      "id": "python-discount-boundary",
+      "passed": true,
+      "output_characters": 149
+    }
+  ]
+}

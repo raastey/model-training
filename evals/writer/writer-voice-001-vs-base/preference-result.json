@@ -1,0 +1,19 @@
+{
+  "user_choices": {
+    "accountability": "B",
+    "evidence": "B",
+    "power": "B"
+  },
+  "resolved": {
+    "base_wins": 1,
+    "candidate_wins": 2,
+    "candidate_won_prompts": [
+      "evidence",
+      "accountability"
+    ],
+    "base_won_prompts": [
+      "power"
+    ]
+  },
+  "decision": "conditional_short_context_trial_only"
+}
