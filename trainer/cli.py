@@ -11,6 +11,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+from trainer.agentic import code_markdown_table, load_code_tasks, mlx_chat_generator, run_code_study
 from trainer.benchmarks import (
     load_relevance_cases,
     relevance_recall_at_k,
@@ -34,7 +35,7 @@ from trainer.code_evaluation import (
 from trainer.code_history import build_historical_repair_dataset
 from trainer.code_tasks import build_code_task_manifest, validate_code_task_manifest
 from trainer.config import project_paths
-from trainer.context import build_writer_index, retrieve_writer_context
+from trainer.context import build_writer_index, embed_texts, retrieve_writer_context
 from trainer.corpus import import_writer_corpus, list_documents, set_quality
 from trainer.dataset import build_writer_dataset, validate_writer_dataset
 from trainer.doctor import as_dict, inspect
@@ -53,6 +54,14 @@ from trainer.runtime import (
     fit_complete_sentences_to_words,
     generate_writer_output,
     writer_context_prompt,
+)
+from trainer.study import (
+    build_blind_review,
+    load_tasks,
+    markdown_table,
+    mlx_generator,
+    run_writer_study,
+    score_blind_review,
 )
 from trainer.training import (
     execute_prepared_run,
@@ -77,6 +86,7 @@ train_app = typer.Typer(no_args_is_help=True, help="Local, non-promoting trainin
 eval_app = typer.Typer(no_args_is_help=True, help="Local candidate evaluation.")
 context_app = typer.Typer(no_args_is_help=True, help="Local Writer working-context retrieval.")
 code_app = typer.Typer(no_args_is_help=True, help="Strictly isolated Code corpus preparation.")
+study_app = typer.Typer(no_args_is_help=True, help="Reproducible context-versus-weights studies.")
 app.add_typer(corpus_app, name="corpus")
 app.add_typer(dataset_app, name="dataset")
 app.add_typer(model_app, name="model")
@@ -84,6 +94,7 @@ app.add_typer(train_app, name="train")
 app.add_typer(eval_app, name="eval")
 app.add_typer(context_app, name="context")
 app.add_typer(code_app, name="code")
+app.add_typer(study_app, name="study")
 console = Console()
 
 
@@ -899,3 +910,62 @@ def eval_context_ablation(
     report_path.write_text(json.dumps({"candidate": candidate_run, "variants": variants}, indent=2) + "\n", encoding="utf-8")
     summary = ", ".join(f"{item['context_budget']}={item['passed']}/{item['total']}" for item in variants)
     console.print(f"context_ablation {summary}; report: {report_path}")
+
+
+@study_app.command("writer")
+def study_writer(
+    adapter_run: str = typer.Option("writer-voice-001", "--adapter", help="Writer adapter for the weights conditions."),
+    tasks: Path = typer.Option(Path("evals/study/writer-tasks.json"), "--tasks", help="Held-out study tasks."),
+    root: Path = typer.Option(Path.cwd(), "--root", help="Project directory."),
+) -> None:
+    """Run every Writer task under six steering conditions and write the report and blind review."""
+    paths = project_paths(root)
+    model = writer_model(paths)
+    adapter_path = paths.root / "adapters" / "writer" / adapter_run
+    if not model.ready or not (adapter_path / "adapters.safetensors").is_file():
+        raise typer.BadParameter("Writer base model or adapter is not ready.")
+    task_list = load_tasks(tasks if tasks.is_absolute() else paths.root / tasks)
+    report = run_writer_study(paths, task_list, mlx_generator(model.path, adapter_path), lambda texts: embed_texts(paths, texts))
+    report["adapter"] = adapter_run
+    out = paths.root / "evals" / "study"
+    (out / "writer-study.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (out / "writer-study.md").write_text(markdown_table(report), encoding="utf-8")
+    page, key = build_blind_review(report)
+    (out / "blind-review.html").write_text(page, encoding="utf-8")
+    key_path = paths.root / "runs" / "study" / "blind-key.json"
+    key_path.parent.mkdir(parents=True, exist_ok=True)
+    key_path.write_text(json.dumps(key, indent=2) + "\n", encoding="utf-8")
+    console.print(markdown_table(report))
+
+
+@study_app.command("blind-score")
+def study_blind_score(
+    choices: Path = typer.Argument(..., help="blind-choices.json downloaded from the review page."),
+    root: Path = typer.Option(Path.cwd(), "--root", help="Project directory."),
+) -> None:
+    """Unblind a completed human review and record win rates."""
+    paths = project_paths(root)
+    key = json.loads((paths.root / "runs" / "study" / "blind-key.json").read_text(encoding="utf-8"))
+    result = score_blind_review(json.loads(choices.read_text(encoding="utf-8")), key)
+    (paths.root / "evals" / "study" / "blind-review-result.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    console.print(result)
+
+
+@study_app.command("code")
+def study_code(
+    tasks: Path = typer.Option(Path("evals/study/code-tasks.json"), "--tasks", help="Agentic code tasks."),
+    root: Path = typer.Option(Path.cwd(), "--root", help="Project directory."),
+) -> None:
+    """Run the agentic code study on the local 3B and 7B Coder models."""
+    paths = project_paths(root)
+    task_list = load_code_tasks(tasks if tasks.is_absolute() else paths.root / tasks)
+    models = {}
+    for name, local in (("Qwen2.5-Coder-3B", code_model(paths)), ("Qwen2.5-Coder-7B", code_7b_model(paths))):
+        if not local.ready:
+            raise typer.BadParameter(f"{name} is not downloaded.")
+        models[name] = mlx_chat_generator(local.path)
+    report = run_code_study(task_list, models)
+    out = paths.root / "evals" / "study"
+    (out / "code-study.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    (out / "code-study.md").write_text(code_markdown_table(report), encoding="utf-8")
+    console.print(code_markdown_table(report))

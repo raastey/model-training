@@ -1,0 +1,58 @@
+[
+  {
+    "id": "duration",
+    "filename": "duration.py",
+    "request": "parse_duration is wrong for some inputs. Fix it.",
+    "source": "def parse_duration(value: str) -> int:\n    \"\"\"Convert strings like '1h30m' into seconds.\"\"\"\n    total = 0\n    number = \"\"\n    for char in value:\n        if char.isdigit():\n            number += char\n        elif char == \"h\":\n            total += int(number) * 3600\n            number = \"\"\n        elif char == \"m\":\n            total += int(number) * 60\n            number = \"\"\n    return total\n",
+    "tests": "import unittest\nfrom duration import parse_duration\n\nclass DurationTests(unittest.TestCase):\n    def test_hours_and_minutes(self):\n        self.assertEqual(parse_duration(\"1h30m\"), 5400)\n    def test_seconds(self):\n        self.assertEqual(parse_duration(\"45s\"), 45)\n    def test_all_units(self):\n        self.assertEqual(parse_duration(\"1h5m10s\"), 3910)\n    def test_rejects_unknown_unit(self):\n        with self.assertRaises(ValueError):\n            parse_duration(\"3d\")\n    def test_rejects_trailing_number(self):\n        with self.assertRaises(ValueError):\n            parse_duration(\"10\")\n"
+  },
+  {
+    "id": "chunk",
+    "filename": "chunking.py",
+    "request": "chunk drops data in some cases. Fix it.",
+    "source": "def chunk(items: list, size: int) -> list[list]:\n    \"\"\"Split items into consecutive lists of length size.\"\"\"\n    return [items[i:i + size] for i in range(0, len(items) - size + 1, size)]\n",
+    "tests": "import unittest\nfrom chunking import chunk\n\nclass ChunkTests(unittest.TestCase):\n    def test_even(self):\n        self.assertEqual(chunk([1, 2, 3, 4], 2), [[1, 2], [3, 4]])\n    def test_keeps_partial_tail(self):\n        self.assertEqual(chunk([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]])\n    def test_empty(self):\n        self.assertEqual(chunk([], 3), [])\n    def test_rejects_non_positive_size(self):\n        with self.assertRaises(ValueError):\n            chunk([1], 0)\n"
+  },
+  {
+    "id": "intervals",
+    "filename": "intervals.py",
+    "request": "merge_intervals gives wrong results for some inputs. Fix it.",
+    "source": "def merge_intervals(intervals: list[tuple[int, int]]) -> list[tuple[int, int]]:\n    \"\"\"Merge overlapping closed intervals.\"\"\"\n    merged: list[tuple[int, int]] = []\n    for start, end in intervals:\n        if merged and start < merged[-1][1]:\n            merged[-1] = (merged[-1][0], max(merged[-1][1], end))\n        else:\n            merged.append((start, end))\n    return merged\n",
+    "tests": "import unittest\nfrom intervals import merge_intervals\n\nclass MergeTests(unittest.TestCase):\n    def test_overlap(self):\n        self.assertEqual(merge_intervals([(1, 3), (2, 6)]), [(1, 6)])\n    def test_touching_intervals_merge(self):\n        self.assertEqual(merge_intervals([(1, 2), (2, 3)]), [(1, 3)])\n    def test_unsorted_input(self):\n        self.assertEqual(merge_intervals([(8, 10), (1, 3), (2, 4)]), [(1, 4), (8, 10)])\n    def test_contained(self):\n        self.assertEqual(merge_intervals([(1, 10), (2, 3)]), [(1, 10)])\n"
+  },
+  {
+    "id": "roman",
+    "filename": "roman.py",
+    "request": "roman_to_int is wrong for some numerals. Fix it.",
+    "source": "VALUES = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"D\": 500, \"M\": 1000}\n\ndef roman_to_int(numeral: str) -> int:\n    return sum(VALUES[char] for char in numeral)\n",
+    "tests": "import unittest\nfrom roman import roman_to_int\n\nclass RomanTests(unittest.TestCase):\n    def test_additive(self):\n        self.assertEqual(roman_to_int(\"XVI\"), 16)\n    def test_subtractive(self):\n        self.assertEqual(roman_to_int(\"IV\"), 4)\n        self.assertEqual(roman_to_int(\"XC\"), 90)\n    def test_complex(self):\n        self.assertEqual(roman_to_int(\"MCMXCIV\"), 1994)\n    def test_lowercase_accepted(self):\n        self.assertEqual(roman_to_int(\"xiv\"), 14)\n    def test_rejects_invalid_character(self):\n        with self.assertRaises(ValueError):\n            roman_to_int(\"XIZ\")\n"
+  },
+  {
+    "id": "lru",
+    "filename": "lru.py",
+    "request": "LRUCache evicts the wrong entry. Fix it.",
+    "source": "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.data: dict = {}\n\n    def get(self, key):\n        return self.data.get(key)\n\n    def put(self, key, value) -> None:\n        self.data[key] = value\n        if len(self.data) > self.capacity:\n            oldest = next(iter(self.data))\n            del self.data[oldest]\n",
+    "tests": "import unittest\nfrom lru import LRUCache\n\nclass LRUTests(unittest.TestCase):\n    def test_evicts_least_recent(self):\n        cache = LRUCache(2)\n        cache.put(\"a\", 1)\n        cache.put(\"b\", 2)\n        cache.put(\"c\", 3)\n        self.assertIsNone(cache.get(\"a\"))\n    def test_get_refreshes_recency(self):\n        cache = LRUCache(2)\n        cache.put(\"a\", 1)\n        cache.put(\"b\", 2)\n        cache.get(\"a\")\n        cache.put(\"c\", 3)\n        self.assertEqual(cache.get(\"a\"), 1)\n        self.assertIsNone(cache.get(\"b\"))\n    def test_update_refreshes_recency(self):\n        cache = LRUCache(2)\n        cache.put(\"a\", 1)\n        cache.put(\"b\", 2)\n        cache.put(\"a\", 10)\n        cache.put(\"c\", 3)\n        self.assertEqual(cache.get(\"a\"), 10)\n        self.assertIsNone(cache.get(\"b\"))\n"
+  },
+  {
+    "id": "frequencies",
+    "filename": "frequencies.py",
+    "request": "top_words gives wrong results. Fix it.",
+    "source": "def top_words(text: str, n: int) -> list[tuple[str, int]]:\n    counts: dict[str, int] = {}\n    for word in text.split():\n        counts[word] = counts.get(word, 0) + 1\n    return sorted(counts.items(), key=lambda item: item[1], reverse=True)[:n]\n",
+    "tests": "import unittest\nfrom frequencies import top_words\n\nclass TopWordsTests(unittest.TestCase):\n    def test_case_and_punctuation_ignored(self):\n        self.assertEqual(top_words(\"The cat. the CAT, the dog!\", 2), [(\"the\", 3), (\"cat\", 2)])\n    def test_ties_sorted_alphabetically(self):\n        self.assertEqual(top_words(\"pear apple fig\", 3), [(\"apple\", 1), (\"fig\", 1), (\"pear\", 1)])\n    def test_apostrophes_kept(self):\n        self.assertEqual(top_words(\"don't don't stop\", 1), [(\"don't\", 2)])\n"
+  },
+  {
+    "id": "phone",
+    "filename": "phone.py",
+    "request": "normalize_phone does not handle all valid inputs. Fix it.",
+    "source": "def normalize_phone(value: str) -> str:\n    \"\"\"Return a US number in E.164 form, for example +14155550123.\"\"\"\n    digits = value.replace(\"-\", \"\")\n    return \"+1\" + digits\n",
+    "tests": "import unittest\nfrom phone import normalize_phone\n\nclass PhoneTests(unittest.TestCase):\n    def test_dashes(self):\n        self.assertEqual(normalize_phone(\"415-555-0123\"), \"+14155550123\")\n    def test_formatting_characters(self):\n        self.assertEqual(normalize_phone(\"(415) 555 0123\"), \"+14155550123\")\n    def test_existing_country_code(self):\n        self.assertEqual(normalize_phone(\"+1 415 555 0123\"), \"+14155550123\")\n        self.assertEqual(normalize_phone(\"1-415-555-0123\"), \"+14155550123\")\n    def test_rejects_wrong_length(self):\n        with self.assertRaises(ValueError):\n            normalize_phone(\"555-0123\")\n"
+  },
+  {
+    "id": "paginate",
+    "filename": "pagination.py",
+    "request": "paginate returns the wrong page. Fix it.",
+    "source": "import math\n\ndef paginate(items: list, page: int, per_page: int) -> dict:\n    \"\"\"Pages are numbered from 1.\"\"\"\n    start = page * per_page\n    return {\n        \"items\": items[start:start + per_page],\n        \"total_pages\": len(items) // per_page,\n    }\n",
+    "tests": "import unittest\nfrom pagination import paginate\n\nclass PaginateTests(unittest.TestCase):\n    def test_first_page(self):\n        self.assertEqual(paginate(list(range(10)), 1, 3)[\"items\"], [0, 1, 2])\n    def test_last_partial_page(self):\n        result = paginate(list(range(10)), 4, 3)\n        self.assertEqual(result[\"items\"], [9])\n        self.assertEqual(result[\"total_pages\"], 4)\n    def test_page_out_of_range_is_empty(self):\n        self.assertEqual(paginate(list(range(10)), 9, 3)[\"items\"], [])\n    def test_rejects_page_zero(self):\n        with self.assertRaises(ValueError):\n            paginate([1], 0, 3)\n"
+  }
+]

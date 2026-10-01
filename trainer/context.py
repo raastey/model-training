@@ -55,7 +55,7 @@ def _embedding_runtime(model_path: str):
     return model, tokenizer, generate
 
 
-def _embed_texts(paths: ProjectPaths, texts: list[str]) -> list[list[float]]:
+def embed_texts(paths: ProjectPaths, texts: list[str]) -> list[list[float]]:
     """Embed locally, reusing the loaded embedding model within one CLI run."""
     model, tokenizer, generate = _embedding_runtime(str(_embedding_model_path(paths)))
     vectors: list[list[float]] = []
@@ -81,7 +81,7 @@ def build_writer_index(paths: ProjectPaths, chunk_characters: int = 3000, use_se
     if use_semantic:
         if not (_embedding_model_path(paths) / "model.safetensors").is_file():
             raise ValueError("Local embedding model is missing.")
-        semantic_vectors = dict(zip((chunk.id for chunk in chunks), _embed_texts(paths, [chunk.text for chunk in chunks]), strict=True))
+        semantic_vectors = dict(zip((chunk.id for chunk in chunks), embed_texts(paths, [chunk.text for chunk in chunks]), strict=True))
     index_path.write_text(
         json.dumps({"version": INDEX_VERSION, "space": "writer", "chunks": [asdict(chunk) for chunk in chunks], "semantic_vectors": semantic_vectors}, ensure_ascii=False) + "\n",
         encoding="utf-8",
@@ -105,7 +105,7 @@ def retrieve_writer_context(paths: ProjectPaths, query: str, limit: int = 5, bud
     average_length = sum(sum(counts.values()) for counts in term_counts) / max(len(term_counts), 1)
     query_vector: list[float] | None = None
     if index.get("semantic_vectors"):
-        query_vector = _embed_texts(paths, [query])[0]
+        query_vector = embed_texts(paths, [query])[0]
     ranked: list[RetrievedChunk] = []
     for chunk, counts in zip(all_chunks, term_counts, strict=True):
         matched = tuple(sorted(query_terms & set(counts)))

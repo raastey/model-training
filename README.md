@@ -1,5 +1,7 @@
 # SIXTWELVE local model training
 
+**Results:** [STUDY.md](STUDY.md) measures prompt engineering, retrieval, and LoRA fine-tuning on the same 3B model, and an agentic test-feedback loop on 3B and 7B code models.
+
 This folder trains and tests two private local AI specialists:
 
 | Specialist | Purpose | Current state |

@@ -1,0 +1,411 @@
+{
+  "kind": "agentic_code_study",
+  "tasks": [
+    "duration",
+    "chunk",
+    "intervals",
+    "roman",
+    "lru",
+    "frequencies",
+    "phone",
+    "paginate"
+  ],
+  "rows": [
+    {
+      "model": "Qwen2.5-Coder-3B",
+      "harness": "request",
+      "label": "Request only, one attempt",
+      "passed": 1,
+      "total": 8,
+      "seconds": 16.8,
+      "results": [
+        {
+          "id": "duration",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 4.3,
+          "failure_tail": "          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpk6gqluk5/duration.py\", line 11, in parse_duration\n    total += int(number) * {\"h\": 3600, \"m\": 60, \"s\": 1}[unit]\n                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nKeyError: ''\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (errors=5)\n"
+        },
+        {
+          "id": "chunk",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 1.4,
+          "failure_tail": null
+        },
+        {
+          "id": "intervals",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.1,
+          "failure_tail": "ertEqual(merge_intervals([(8, 10), (1, 3), (2, 4)]), [(1, 4), (8, 10)])\nAssertionError: Lists differ: [(8, 10)] != [(1, 4), (8, 10)]\n\nFirst differing element 0:\n(8, 10)\n(1, 4)\n\nSecond list contains 1 additional elements.\nFirst extra element 1:\n(8, 10)\n\n- [(8, 10)]\n+ [(1, 4), (8, 10)]\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "id": "roman",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.1,
+          "failure_tail": "ctzvp6sr0000gn/T/tmpk1m43dq6/test_task.py\", line 16, in test_rejects_invalid_character\n    roman_to_int(\"XIZ\")\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpk1m43dq6/roman.py\", line 7, in roman_to_int\n    value = VALUES[char]\n            ~~~~~~^^^^^^\nKeyError: 'Z'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (errors=2)\n"
+        },
+        {
+          "id": "lru",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.2,
+          "failure_tail": "----------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmp4wnxhgg1/test_task.py\", line 26, in test_update_refreshes_recency\n    self.assertIsNone(cache.get(\"b\"))\nAssertionError: -1 is not None\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=3)\n"
+        },
+        {
+          "id": "frequencies",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 1.2,
+          "failure_tail": "e\", 1), (\"fig\", 1), (\"pear\", 1)])\nAssertionError: Lists differ: [('pear', 1), ('apple', 1), ('fig', 1)] != [('apple', 1), ('fig', 1), ('pear', 1)]\n\nFirst differing element 0:\n('pear', 1)\n('apple', 1)\n\n- [('pear', 1), ('apple', 1), ('fig', 1)]\n+ [('apple', 1), ('fig', 1), ('pear', 1)]\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nFAILED (failures=2)\n"
+        },
+        {
+          "id": "phone",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.1,
+          "failure_tail": " \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmp0a5sepb9/test_task.py\", line 10, in test_existing_country_code\n    self.assertEqual(normalize_phone(\"+1 415 555 0123\"), \"+14155550123\")\nAssertionError: '+114155550123' != '+14155550123'\n- +114155550123\n?  -\n+ +14155550123\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "id": "paginate",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 1.4,
+          "failure_tail": "-----\nTraceback (most recent call last):\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpbqzncjz0/test_task.py\", line 14, in test_rejects_page_zero\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (failures=1)\n"
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-Coder-3B",
+      "harness": "tests",
+      "label": "Request + test file, one attempt",
+      "passed": 5,
+      "total": 8,
+      "seconds": 21.6,
+      "results": [
+        {
+          "id": "duration",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.8,
+          "failure_tail": null
+        },
+        {
+          "id": "chunk",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 1.5,
+          "failure_tail": null
+        },
+        {
+          "id": "intervals",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.2,
+          "failure_tail": null
+        },
+        {
+          "id": "roman",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.3,
+          "failure_tail": "ctzvp6sr0000gn/T/tmpdaxaut21/test_task.py\", line 16, in test_rejects_invalid_character\n    roman_to_int(\"XIZ\")\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpdaxaut21/roman.py\", line 7, in roman_to_int\n    value = VALUES[char]\n            ~~~~~~^^^^^^\nKeyError: 'Z'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (errors=2)\n"
+        },
+        {
+          "id": "lru",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.3,
+          "failure_tail": null
+        },
+        {
+          "id": "frequencies",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 3.7,
+          "failure_tail": "encies.py\", line 3, in <module>\n    from frequencies import top_words\nImportError: cannot import name 'top_words' from partially initialized module 'frequencies' (most likely due to a circular import) (/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpwkc0_is_/frequencies.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+        },
+        {
+          "id": "phone",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 4.9,
+          "failure_tail": " \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmp8nz9gqpk/test_task.py\", line 10, in test_existing_country_code\n    self.assertEqual(normalize_phone(\"+1 415 555 0123\"), \"+14155550123\")\nAssertionError: '+114155550123' != '+14155550123'\n- +114155550123\n?  -\n+ +14155550123\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "id": "paginate",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 1.9,
+          "failure_tail": null
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-Coder-3B",
+      "harness": "agent",
+      "label": "Request + tests + failure feedback, up to 3 attempts",
+      "passed": 5,
+      "total": 8,
+      "seconds": 50.8,
+      "results": [
+        {
+          "id": "duration",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.7,
+          "failure_tail": null
+        },
+        {
+          "id": "chunk",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 1.4,
+          "failure_tail": null
+        },
+        {
+          "id": "intervals",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.1,
+          "failure_tail": null
+        },
+        {
+          "id": "roman",
+          "passed": false,
+          "attempts": 3,
+          "seconds": 8.9,
+          "failure_tail": "aceback (most recent call last):\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpx23p0n60/test_task.py\", line 15, in test_rejects_invalid_character\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (failures=2)\n"
+        },
+        {
+          "id": "lru",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.3,
+          "failure_tail": null
+        },
+        {
+          "id": "frequencies",
+          "passed": false,
+          "attempts": 3,
+          "seconds": 14.5,
+          "failure_tail": "e\", 1), (\"fig\", 1), (\"pear\", 1)])\nAssertionError: Lists differ: [('pear', 1), ('apple', 1), ('fig', 1)] != [('apple', 1), ('fig', 1), ('pear', 1)]\n\nFirst differing element 0:\n('pear', 1)\n('apple', 1)\n\n- [('pear', 1), ('apple', 1), ('fig', 1)]\n+ [('apple', 1), ('fig', 1), ('pear', 1)]\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nFAILED (failures=3)\n"
+        },
+        {
+          "id": "phone",
+          "passed": false,
+          "attempts": 3,
+          "seconds": 17.0,
+          "failure_tail": " \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpvn308w6a/test_task.py\", line 10, in test_existing_country_code\n    self.assertEqual(normalize_phone(\"+1 415 555 0123\"), \"+14155550123\")\nAssertionError: '+114155550123' != '+14155550123'\n- +114155550123\n?  -\n+ +14155550123\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "id": "paginate",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 1.9,
+          "failure_tail": null
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-Coder-7B",
+      "harness": "request",
+      "label": "Request only, one attempt",
+      "passed": 3,
+      "total": 8,
+      "seconds": 26.8,
+      "results": [
+        {
+          "id": "duration",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 4.1,
+          "failure_tail": "lf.assertEqual(parse_duration(\"45s\"), 45)\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpr9vdcwfj/duration.py\", line 18, in parse_duration\n    raise ValueError(\"Invalid duration format\")\nValueError: Invalid duration format\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (errors=2)\n"
+        },
+        {
+          "id": "chunk",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 1.9,
+          "failure_tail": null
+        },
+        {
+          "id": "intervals",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 4.0,
+          "failure_tail": null
+        },
+        {
+          "id": "roman",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 3.9,
+          "failure_tail": "ctzvp6sr0000gn/T/tmpswydoq4h/test_task.py\", line 16, in test_rejects_invalid_character\n    roman_to_int(\"XIZ\")\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpswydoq4h/roman.py\", line 7, in roman_to_int\n    value = VALUES[char]\n            ~~~~~~^^^^^^\nKeyError: 'Z'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (errors=2)\n"
+        },
+        {
+          "id": "lru",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 4.6,
+          "failure_tail": null
+        },
+        {
+          "id": "frequencies",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.7,
+          "failure_tail": "e\", 1), (\"fig\", 1), (\"pear\", 1)])\nAssertionError: Lists differ: [('pear', 1), ('apple', 1), ('fig', 1)] != [('apple', 1), ('fig', 1), ('pear', 1)]\n\nFirst differing element 0:\n('pear', 1)\n('apple', 1)\n\n- [('pear', 1), ('apple', 1), ('fig', 1)]\n+ [('apple', 1), ('fig', 1), ('pear', 1)]\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nFAILED (failures=2)\n"
+        },
+        {
+          "id": "phone",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.8,
+          "failure_tail": "e(\"+1 415 555 0123\"), \"+14155550123\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpvi3skpbz/phone.py\", line 7, in normalize_phone\n    raise ValueError(\"Invalid phone number\")\nValueError: Invalid phone number\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (errors=1)\n"
+        },
+        {
+          "id": "paginate",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 2.8,
+          "failure_tail": "-----\nTraceback (most recent call last):\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmp9hli558t/test_task.py\", line 14, in test_rejects_page_zero\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (failures=1)\n"
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-Coder-7B",
+      "harness": "tests",
+      "label": "Request + test file, one attempt",
+      "passed": 4,
+      "total": 8,
+      "seconds": 32.5,
+      "results": [
+        {
+          "id": "duration",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 4.4,
+          "failure_tail": "--------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmph2wpbpcb/test_task.py\", line 6, in test_hours_and_minutes\n    self.assertEqual(parse_duration(\"1h30m\"), 5400)\nAssertionError: 3600 != 5400\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (failures=2, errors=1)\n"
+        },
+        {
+          "id": "chunk",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.9,
+          "failure_tail": null
+        },
+        {
+          "id": "intervals",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 4.4,
+          "failure_tail": null
+        },
+        {
+          "id": "roman",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 4.5,
+          "failure_tail": "ctzvp6sr0000gn/T/tmpb7gue07u/test_task.py\", line 16, in test_rejects_invalid_character\n    roman_to_int(\"XIZ\")\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpb7gue07u/roman.py\", line 7, in roman_to_int\n    value = VALUES[char]\n            ~~~~~~^^^^^^\nKeyError: 'Z'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (errors=1)\n"
+        },
+        {
+          "id": "lru",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 5.4,
+          "failure_tail": null
+        },
+        {
+          "id": "frequencies",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 3.6,
+          "failure_tail": "est_task.py\", line 10, in test_apostrophes_kept\n    self.assertEqual(top_words(\"don't don't stop\", 1), [(\"don't\", 2)])\nAssertionError: Lists differ: [('don', 2)] != [(\"don't\", 2)]\n\nFirst differing element 0:\n('don', 2)\n(\"don't\", 2)\n\n- [('don', 2)]\n?   ^\n\n+ [(\"don't\", 2)]\n?   ^    ++\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "id": "phone",
+          "passed": false,
+          "attempts": 1,
+          "seconds": 3.5,
+          "failure_tail": "0123\"), \"+14155550123\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpiee40j_f/phone.py\", line 7, in normalize_phone\n    raise ValueError(\"Invalid phone number length\")\nValueError: Invalid phone number length\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (errors=1)\n"
+        },
+        {
+          "id": "paginate",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 3.8,
+          "failure_tail": null
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-Coder-7B",
+      "harness": "agent",
+      "label": "Request + tests + failure feedback, up to 3 attempts",
+      "passed": 5,
+      "total": 8,
+      "seconds": 77.0,
+      "results": [
+        {
+          "id": "duration",
+          "passed": false,
+          "attempts": 3,
+          "seconds": 21.9,
+          "failure_tail": "--------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmpvoqzzq3d/test_task.py\", line 6, in test_hours_and_minutes\n    self.assertEqual(parse_duration(\"1h30m\"), 5400)\nAssertionError: 3600 != 5400\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (failures=2, errors=1)\n"
+        },
+        {
+          "id": "chunk",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 2.9,
+          "failure_tail": null
+        },
+        {
+          "id": "intervals",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 4.6,
+          "failure_tail": null
+        },
+        {
+          "id": "roman",
+          "passed": true,
+          "attempts": 2,
+          "seconds": 10.6,
+          "failure_tail": null
+        },
+        {
+          "id": "lru",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 5.4,
+          "failure_tail": null
+        },
+        {
+          "id": "frequencies",
+          "passed": false,
+          "attempts": 3,
+          "seconds": 14.0,
+          "failure_tail": "est_task.py\", line 10, in test_apostrophes_kept\n    self.assertEqual(top_words(\"don't don't stop\", 1), [(\"don't\", 2)])\nAssertionError: Lists differ: [('don', 2)] != [(\"don't\", 2)]\n\nFirst differing element 0:\n('don', 2)\n(\"don't\", 2)\n\n- [('don', 2)]\n?   ^\n\n+ [(\"don't\", 2)]\n?   ^    ++\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "id": "phone",
+          "passed": false,
+          "attempts": 3,
+          "seconds": 13.8,
+          "failure_tail": "0123\"), \"+14155550123\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/ck/57qqtb4d3m56zx2jctzvp6sr0000gn/T/tmphce4jepz/phone.py\", line 7, in normalize_phone\n    raise ValueError(\"Invalid phone number length\")\nValueError: Invalid phone number length\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (errors=1)\n"
+        },
+        {
+          "id": "paginate",
+          "passed": true,
+          "attempts": 1,
+          "seconds": 3.8,
+          "failure_tail": null
+        }
+      ]
+    }
+  ]
+}
