@@ -39,7 +39,15 @@ Everything here reruns on a Mac with:
 4. **The adapter alone did not move style.** `writer-voice-001` (LoRA rank 8, 4 layers, 50 iterations) slightly worsens style delta, while keeping the best topic adherence. This agrees with the earlier decision to keep it unpromoted, and it shows a small adapter learns the format of the training examples more than the function-word habits of the author.
 5. **Adapter plus retrieval is the strongest rule-follower** (0.10 violations per 100 words, near-best style), but one output in twelve degenerated into repetition. It is a candidate, not a default.
 
-**Decision.** Ship retrieval as the default steering method for the Writer, keep the adapter behind the blind-comparison gate, and do not stack the voice prompt on retrieval. A blind human review of the base, prompt + retrieval, and adapter outputs is in [`evals/study/blind-review.html`](evals/study/blind-review.html); its result is recorded with `sixai study blind-score`.
+**Decision.** Ship retrieval as the default steering method for the Writer, keep the adapter behind the blind-comparison gate, and do not stack the voice prompt on retrieval. **Blind human review.** The author judged all 12 tasks blind, choosing which of three shuffled outputs (base, prompt + retrieval, adapter) sounded most like his own writing ([page](evals/study/blind-review.html), [result](evals/study/blind-review-result.json)):
+
+| Condition | Wins | Style delta |
+|---|---|---|
+| Base model | 5 / 12 | 2.054 |
+| System prompt + retrieval | 5 / 12 | 2.085 |
+| LoRA adapter | 2 / 12 | 2.165 |
+
+The human ranking matches the automatic style metric: the two conditions with near-equal style delta tie, and the adapter, with the worst delta, loses clearly. This is evidence that Burrows' Delta tracks what the author himself hears as his voice, so it can stand in for human review in future runs. It also reverses an earlier, shorter blind review that preferred the adapter 2 to 1, which is why one small review is never enough to promote a model. Retrieval alone, the best condition on the metric, was not in this review; it is the first condition to add in the next round.
 
 **Limits.** 12 tasks is a small sample; differences under about 0.1 in style delta should not be read as real. Register violations are measured with the same rules the voice prompt states, so that metric favours the prompt condition. Topic similarity penalizes outputs that become specific (retrieval grounds answers in named cases), so a lower value is not always worse.
 

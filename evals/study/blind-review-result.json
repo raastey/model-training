@@ -1,0 +1,13 @@
+{
+  "judged": 12,
+  "wins": {
+    "base": 5,
+    "prompt_retrieval": 5,
+    "adapter": 2
+  },
+  "win_rate": {
+    "base": 0.417,
+    "prompt_retrieval": 0.417,
+    "adapter": 0.167
+  }
+}
